@@ -3,19 +3,19 @@
 <head>
     <title> Admin Login Form </title>
     <%-include('../partial/_bootstrap.ejs')%>
-    <link rel="stylesheet" href="/CSS/Adminlogin.css"/>
-   
+        <link rel="stylesheet" href="/CSS/Adminlogin.css" />
+
 </head>
 
 <body>
     <div class="loginbox">
         <img src="/images/loginnnnn.png" class="logo">
         <h1>Login Here</h1>
-        <form>
+        <form action="/admin/login" method="post">
             <p>Email </p>
-            <input type="text" name="" placeholder="Enter your email">
+            <input type="email" name="email" placeholder="Enter your email">
             <p>Password</p>
-            <input type="password" name="" placeholder="Enter your Password">
+            <input type="password" name="password" placeholder="Enter your Password">
             <input type="submit" name="" value="Login ">
             <a href="#">Forgot your password ?</a>
         </form>
