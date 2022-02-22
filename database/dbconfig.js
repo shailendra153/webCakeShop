@@ -4,5 +4,5 @@ module.exports = mysql.createPool({
     user: 'root',
     password: 'root',
     connectionLimit: 100,
-    database: ' cake_on_door;'
+    database: 'cake_on_door'
 });
