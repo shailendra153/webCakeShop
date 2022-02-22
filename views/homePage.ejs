@@ -2,14 +2,22 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Cake</title>
-   
-    <%-include('partial/_bootstrap.ejs')%>
-    <link rel="stylesheet" href="/CSS/AdminHome.css"/>
+
+    <!-- swiper link  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- cdn icon link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- custom css file  -->
+    <link rel="stylesheet" href="/CSS/AdminHome.css">
+
 </head>
 
 <body>
-    <%- include('partial/_navigation.ejs')%>
 
     <!-- header section start here  -->
     <header class="header">
@@ -18,10 +26,16 @@
             <h1 class="logoName">Cake On Door </h1>
         </div>
 
-      
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#product">product</a>
+            <a href="#blogs">About</a>
+            <a href="#review">review</a>
+            <a href="#contact">contact</a>
+        </nav>
 
         <div class="icon">
-            <i class="fas fa-user" id="Admin"><a href="./adminHome.ejs">  Admin</a></i>
+            <i class="fas fa-user" id="Admin"><a href="./admin"> Admin</a></i>
             <i class="fas fa-bars" id="menu-bar"></i>
         </div>
 
@@ -35,8 +49,8 @@
     <section class="home" id="home">
         <div class="homeContent">
             <h2>Delicious Cake for Everyone </h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum excepturi doloribus, fuga quod deserunt recusandae?
-            </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum excepturi doloribus, fuga quod deserunt
+                recusandae?</p>
             <div class="home-btn">
                 <a href="#"><button>see more</button></a>
             </div>
@@ -58,7 +72,8 @@
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa adipisci reiciendis assumenda. images </p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa adipisci reiciendis assumenda.
+                        </p>
                         <div class="orderNow">
                             <button>Order Now </button>
                         </div>
@@ -180,10 +195,11 @@
                     </div>
                     <div class="content">
                         <h3>Caramel Bourbon Vanilla Cupcakes </h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis laborum sed soluta voluptatibus aspernatur natus, dicta
-                            quisquam.
-                        </p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint eaque at.</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum
+                            corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis
+                            laborum sed soluta voluptatibus aspernatur natus, dicta quisquam.</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint
+                            eaque at.</p>
                         <a href="#blogs" class="btn">learn more</a>
                     </div>
                 </div>
@@ -193,10 +209,11 @@
                     </div>
                     <div class="content">
                         <h3>Caramel Bourbon Vanilla Cupcakes </h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis laborum sed soluta voluptatibus aspernatur natus, dicta
-                            quisquam.
-                        </p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint eaque at.</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum
+                            corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis
+                            laborum sed soluta voluptatibus aspernatur natus, dicta quisquam.</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint
+                            eaque at.</p>
                         <a href="#blogs" class="btn">learn more</a>
                     </div>
                 </div>
@@ -206,10 +223,11 @@
                     </div>
                     <div class="content">
                         <h3>Caramel Bourbon Vanilla Cupcakes </h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis laborum sed soluta voluptatibus aspernatur natus, dicta
-                            quisquam.
-                        </p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint eaque at.</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum
+                            corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis
+                            laborum sed soluta voluptatibus aspernatur natus, dicta quisquam.</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint
+                            eaque at.</p>
                         <a href="#blogs" class="btn">learn more</a>
                     </div>
                 </div>
@@ -246,7 +264,8 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
@@ -260,7 +279,8 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
@@ -274,7 +294,8 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
@@ -288,7 +309,8 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
+                            quasi eveniet aliquam sed?</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
@@ -340,7 +362,7 @@
             <div class="box">
                 <h3>Contact Info</h3>
                 <a href="#"> <i class="fas fa-phone"></i>+91 12222 34444</a>
-                <a href="#"> <i class="fas fa-envelope"></i>dannydesigner@gmail.com</a>
+                <a href="#"> <i class="fas fa-envelope"></i>Jayshreedesigner@gmail.com</a>
 
             </div>
 
@@ -353,7 +375,7 @@
             <a href="#" class="fab fa-pinterest"></a>
         </div>
         <div class="credit">
-            created by <span>Mr.Danny Designer </span> |all rights reserved !
+            created by <span>Miss Jayshree Designer</span> |all rights reserved !
         </div>
     </footer>
 
@@ -370,7 +392,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- custom js file  -->
-    <script src="../public/js/cake.js"></script>
+    <script src="/js/cake.js"></script>
 
 
 </body>
