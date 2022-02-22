@@ -1,9 +1,16 @@
+const { request } = require('express');
 const Admin = require('../model/admin.model');
 exports.adminLoginPage = (request, response, next) => {
     response.render("admin/admin_login.ejs", {
         title: "Login"
     });
 };
+exports.adminHomepage = (request, response, next) => {
+    response.render("adminHome.ejs", {
+        title: "Admin HomePage"
+    });
+
+}
 exports.adminLoginPost = (request, response, next) => {
     const email = request.body.email;
     const password = request.body.password;
