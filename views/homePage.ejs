@@ -2,40 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Cake</title>
-
-    <!-- swiper link  -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-    <!-- cdn icon link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- custom css file  -->
-    <link rel="stylesheet" href="/CSS/cake.css">
-
+   
+    <%-include('partial/_bootstrap.ejs')%>
+    <link rel="stylesheet" href="/CSS/AdminHome.css"/>
 </head>
 
 <body>
+    <%- include('partial/_navigation.ejs')%>
 
     <!-- header section start here  -->
     <header class="header">
         <div class="logoContent">
-            <a href="#" class="logo"><img src="../public/images/logo.png" alt=""></a>
+            <a href="#" class="logo"><img src="/images/logo.png" alt=""></a>
             <h1 class="logoName">Cake On Door </h1>
         </div>
 
-        <nav class="navbar">
-            <a href="#home">home</a>
-            <a href="#product">product</a>
-            <a href="#blogs">About</a>
-            <a href="#review">review</a>
-            <a href="#contact">contact</a>
-        </nav>
+      
 
         <div class="icon">
-            <i class="fas fa-user" id="Admin"><a href="#">  Admin</a></i>
+            <i class="fas fa-user" id="Admin"><a href="./adminHome.ejs">  Admin</a></i>
             <i class="fas fa-bars" id="menu-bar"></i>
         </div>
 
@@ -68,7 +54,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake1.png" alt="">
+                        <img src="/images/cake1.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -80,7 +66,7 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake1.png" alt="">
+                        <img src="/images/cake1.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -93,7 +79,7 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake1.png" alt="">
+                        <img src="/images/cake1.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -106,7 +92,7 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake2.png" alt="">
+                        <img src="/images/cake2.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -125,7 +111,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake1.png" alt="">
+                        <img src="/images/cake1.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -138,7 +124,7 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake1.png" alt="">
+                        <img src="/images/cake1.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -151,7 +137,7 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake1.png" alt="">
+                        <img src="/images/cake1.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -164,7 +150,7 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/cake2.png" alt="">
+                        <img src="/images/cake2.png" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Chocolate</h3>
@@ -190,7 +176,7 @@
             <div class="swiper-wrapper">
                 <div class=" swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/blog-img1.png" alt="">
+                        <img src="/images/blog-img1.png" alt="">
                     </div>
                     <div class="content">
                         <h3>Caramel Bourbon Vanilla Cupcakes </h3>
@@ -203,7 +189,7 @@
                 </div>
                 <div class=" swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/blog-img2.png" alt="">
+                        <img src="/images/blog-img2.png" alt="">
                     </div>
                     <div class="content">
                         <h3>Caramel Bourbon Vanilla Cupcakes </h3>
@@ -216,7 +202,7 @@
                 </div>
                 <div class=" swiper-slide box">
                     <div class="img">
-                        <img src="../public/images/blog-img2.png" alt="">
+                        <img src="/images/blog-img2.png" alt="">
                     </div>
                     <div class="content">
                         <h3>Caramel Bourbon Vanilla Cupcakes </h3>
@@ -264,7 +250,7 @@
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="../public/images/client1.jpg" alt="">
+                            <img src="/images/client1.jpg" alt="">
                         </div>
                         <div class="clientDetailed">
                             <h3>Hardy Devid</h3>
@@ -278,7 +264,7 @@
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="../public/images/client1.jpg" alt="">
+                            <img src="/images/client1.jpg" alt="">
                         </div>
                         <div class="clientDetailed">
                             <h3>Hardy Devid</h3>
@@ -292,7 +278,7 @@
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="../public/images/client1.jpg" alt="">
+                            <img src="/images/client1.jpg" alt="">
                         </div>
                         <div class="clientDetailed">
                             <h3>Hardy Devid</h3>
@@ -306,7 +292,7 @@
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="../public/images/client1.jpg" alt="">
+                            <img src="/images/client1.jpg" alt="">
                         </div>
                         <div class="clientDetailed">
                             <h3>Hardy Devid</h3>
@@ -327,7 +313,7 @@
         <div class="box-container">
             <div class="mainBox">
                 <div class="content">
-                    <a href="#"><img src="../public/images/logo.png" alt=""></a>
+                    <a href="#"><img src="/images/logo.png" alt=""></a>
                     <h1 class="logoName"> Sweet Cake </h1>
                 </div>
 
@@ -384,7 +370,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- custom js file  -->
-    <script src="cake.js"></script>
+    <script src="../public/js/cake.js"></script>
 
 
 </body>
