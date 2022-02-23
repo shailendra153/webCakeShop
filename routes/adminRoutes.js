@@ -6,5 +6,5 @@ const router = express.Router();
 router.get("/", indexController.adminLoginPage);
 
 router.post("/login", adminController.adminLoginPost);
-router.get("/admin_dashboard", adminController.adminHomepage)
+router.get("/dashboard", adminController.adminHomepage)
 module.exports = router;
