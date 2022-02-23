@@ -373,7 +373,38 @@
     </footer>
 
 
-
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add Category</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form action="/category/add" method="POST" enctype="multipart/form-data">
+                  <div class="form-group">
+                      <label>Category Name</label>
+                      <input type="text" name="categoryName" class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                      <label>Category Image</label>
+                      <input type="file" name="categoryImage"/>
+                  </div>
+                  <div class="form-group">
+                      <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                      <button class="btn btn-primary" type="submit">Add</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
 
 
 

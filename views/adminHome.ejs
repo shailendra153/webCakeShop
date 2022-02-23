@@ -25,22 +25,45 @@
                     alt=""></a></label>-->
         <label>CakeOnDoor</label>
         <ul>
-            <li><a href="#">Logout</a></li>
+            <li><button href="/" class="btn btn-primary">Logout</button></li>
         </ul> <label for="menu" class="menu-bar"> <i class="fa fa-bars"></i> </label>
     </nav>
     <div class="side-menu">
         <center> <img src=https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500>
             <br><br>
             <h2>Admin</h2>
-        </center> <br> <a href="#"><i class="fa fa-user"></i><span>Customers</span></a>
+        </center> <br> <a href="/product/add-product"><i class="fa fa-user"></i><span>AddProduct</span></a>
         <a href="#"><i class="fa fa-envelope"></i><span>Message</span></a>
-        <a href="#"><i class="fa fa-shopping-basket"></i><span>Products</span></a>
+        <button type="button" class="btn btn-primary fa fa-sellsy" data-toggle="modal" data-target="#exampleModalCenter">
+            Add category
+          </button>
         <a href="#"><i class="fa fa-sellsy"></i><span>Statistices</span></a>
         <a href="#"><i class="fa fa-ban"></i><span>Ban Customers</span></a>
         <a href="#"><i class="fa fa-cog"></i><span>Setting</span></a>
-        <a href="#" class="Logout"><span>Logout</span></a>
+        
     </div>
-    <div class="data"> </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+                <form action="/category/add" method="POST" enctype="multipart/form-data">
+                    <div class="form-group" >
+                        <label class="text">Category Name</label>
+                        <input type="text" name="categoryName" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="text" >Category Image</label>
+                        <input type="file" name="categoryImage"/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </div>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>
