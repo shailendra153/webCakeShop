@@ -1,65 +1,97 @@
-const pool = require('../database/dbconfig');
-module.exports = class Category {
-    constructor(categoryName, categoryImage) {
-        this.categoryName = categoryName;
-        this.categoryImage = categoryImage;
-    }
-    static fetchAllCategory(){
-        return new Promise((resolve,reject)=>{
-           pool.getConnection((err,con)=>{
-             if(!err){
-               let sql = "select * from category";
-               con.query(sql,(err,queryResults)=>{
-                  con.release();
-                  err ? reject(err) : resolve(queryResults);
-               });
-             }
-             else 
-               reject(err);
-           }); 
-        });
-    }
-    save() {
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, con) => {
-              if(!err){  
-               let sql = "insert into category(categoryName,categoryImage) values(?,?)";
-               con.query(sql,[this.categoryName,this.categoryImage],(err,queryResult)=>{
-                 con.release(); 
-                 err ? reject(err) : resolve(queryResult);
-               });
-              }
-              else 
-                reject(err);
-            });
-        });
-    }
-    delete(id) {
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, con) => {
+  const pool = require('../database/dbconfig');
+  module.exports = class Category {
+      constructor(categoryName, categoryImage) {
+          this.categoryName = categoryName;
+          this.categoryImage = categoryImage;
+      }
 
-            });
-        });
-    }
-    update() {
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, con) => {
+      save() {
+          return new Promise((resolve, reject) => {
+              pool.getConnection((err, con) => {
+                  if (!err) {
+                      let sql = "insert into category(categoryName,categoryImage) values(?,?)";
+                      con.query(sql, [this.categoryName, this.categoryImage], (err, queryResult) => {
+                          con.release();
+                          err ? reject(err) : resolve(queryResult);
+                      });
+                  } else
+                      reject(err);
+              });
+          });
+      }
+      static delete(id) {
+          this.id = id;
+          return new Promise((resolve, reject) => {
+              pool.getConnection((err, databaseConnection) => {
+                  if (err)
+                      reject(err);
+                  else {
 
-            });
-        });
-    }
-    categoryById(id) {
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, con) => {
+                      let sql = "delete from category where categoryId=?";
+                      databaseConnection.query(sql, [this.id * 1], (err, queryResult) => {
+                          databaseConnection.release();
+                          err ? reject(err) : resolve(queryResult);
+                      });
 
-            });
-        });
-    }
-    categoryList() {
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, con) => {
+                  }
+              });
+          });
+      }
+      static update(id) {
+          this.id = id;
 
-            });
-        });
-    }
-}
+          return new Promise((resolve, reject) => {
+              pool.getConnection((err, databaseConnection) => {
+                  if (err)
+                      reject(err);
+                  else {
+
+                      let sql = "update category set categoryName=?,categoryImage=? where categoryId=?";
+                      databaseConnection.query(sql, [this.categoryName, this.categoryImage, this.id * 1], (err, queryResult) => {
+                          databaseConnection.release();
+                          err ? reject(err) : resolve(queryResult);
+                      });
+
+                  }
+              });
+          });
+
+      }
+      static categoryById(id) {
+          this.id = id;
+          return new Promise((resolve, reject) => {
+              pool.getConnection((err, databaseConnection) => {
+                  if (err)
+                      reject(err);
+                  else {
+
+                      let sql = "select * from category where categoryId=?";
+                      databaseConnection.query(sql, [this.id * 1], (err, queryResult) => {
+                          databaseConnection.release();
+                          err ? reject(err) : resolve(queryResult);
+                      });
+
+                  }
+              });
+          });
+
+      }
+      static categoryList() {
+          return new Promise((resolve, reject) => {
+              pool.getConnection((err, databaseConnection) => {
+                  if (err)
+                      reject(err);
+                  else {
+
+                      let sql = "select * from category";
+                      databaseConnection.query(sql, (err, queryResult) => {
+                          databaseConnection.release();
+                          err ? reject(err) : resolve(queryResult);
+                      });
+
+                  }
+              });
+          });
+
+      }
+  }
