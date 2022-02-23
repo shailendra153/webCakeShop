@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const adminRouter = require("./routes/adminRoutes");
 const homeRouter = require("./routes/homeRoutes");
+const categoryRouter = require('./routes/category.routes');
+const productRouter = require('./routes/product.routes');
 
 const app = express();
 const fileupload = require('express-fileupload');
@@ -21,6 +23,7 @@ app.use(fileupload());
 
 
 app.use("/admin",adminRouter);
+app.use("/category",categoryRouter);
 app.use(homeRouter);
 
 

@@ -171,3 +171,6 @@ nav .menu-bar {
 #menu:checked~.side-menu {
     left: 0;
 }
+.text{
+  text-decoration: #4c516d;    
+}
