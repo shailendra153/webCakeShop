@@ -10,7 +10,7 @@ exports.addCategory = (request,response,next)=>{
         if(request.body.categoryName && file){
           let category = new Category(request.body.categoryName,fileName);
           category.save().then(result=>{
-              response.redirect("/adminHome.ejs");
+              response.redirect("/adminHome");
           }).catch(err=>{
               response.send("Erro.........");
           });
