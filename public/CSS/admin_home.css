@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -122,12 +123,15 @@ nav .menu-bar {
     .side-menu a span {
         display: none;
     }
+
     .side-menu center {
         display: none;
     }
+
     .side-menu {
         width: 100px;
     }
+
     .side-menu a i {
         display: block;
         line-height: 80px;
@@ -135,6 +139,7 @@ nav .menu-bar {
         margin-left: 0;
         font-size: 35px;
     }
+
     .data {
         margin-left: 100px;
     }
@@ -144,9 +149,11 @@ nav .menu-bar {
     .data {
         display: none;
     }
+
     nav ul {
         display: none;
     }
+
     .side-menu {
         width: 100%;
         text-align: center;
@@ -154,15 +161,19 @@ nav .menu-bar {
         background-color: #4c516d;
         transition: all 0.5s;
     }
+
     .side-menu a i {
         display: none;
     }
+
     .side-menu a span {
         display: block;
     }
+
     .side-menu .Logout {
         display: block;
     }
+
     nav .menu-bar {
         display: block;
     }
@@ -171,6 +182,9 @@ nav .menu-bar {
 #menu:checked~.side-menu {
     left: 0;
 }
-.text{
-  text-decoration: #4c516d;    
+
+.text {
+    text-decoration: #4c516d;
 }
+
+   

@@ -3,6 +3,6 @@ const categoryController = require('../controller/category.controller');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
-router.post("/add",auth.isAuth,categoryController.addCategory);
+router.post("/add", auth.isAuth, categoryController.addCategory);
 
 module.exports = router;
