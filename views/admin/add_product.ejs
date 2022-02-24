@@ -4,9 +4,8 @@
         <%- include('../partial/_bootstrap.ejs')%>
     </head>
     <body>
-        <%- include('_admin_navigation.ejs')%>
       <div class="container">
-        <form action="/product/add-product" method="POST" enctype="multipart/form-data">
+        <form action="/product/add-product" method="POST">
           <div class="form-group">
             <label>Category</label>
             <select name="categoryId" class="form-control">
@@ -33,8 +32,8 @@
             <textarea name="productDescription" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <label>Upload(Forn, Back, Left, Rigth view)</label>
-            <br><input type="file" name="productImages" multiple/>
+            <label>Upload(Image)</label>
+            <br><input type="file" name="productImages">
         </div>
         <div class="group">
             <button class="btn btn-primary" type="submit">Add</button>

@@ -1,5 +1,5 @@
 const PoolNamespace = require("mysql/lib/PoolNamespace");
-const pool = require("../util/database");
+const pool = require("../database/dbconfig");
 module.exports = class Product {
     constructor(productName, productPrice, productQuantity, categoryId, productImage, description) {
         this.productName = productName;
@@ -15,7 +15,7 @@ module.exports = class Product {
                 if (err)
                     reject(err);
                 else {
-
+                     console.log("not error hai");
                     let sql = "insert into product(productName, productPrice, productQuantity, categoryId, productImage, description) values(?,?,?,?,?,?)";
                     databaseConnection.query(sql, [this.productName, this.productPrice * 1, this.productQuantity * 1, this.categoryId * 1, this.productImage, this.description], (err, queryResult) => {
                         databaseConnection.release();

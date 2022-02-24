@@ -24,11 +24,12 @@ app.use(fileupload());
 
 app.use("/admin",adminRouter);
 app.use("/category",categoryRouter);
+app.use("/product",productRouter);
 app.use(homeRouter);
 
 
 
-app.listen(3000);
+app.listen(3005);
 
 
 

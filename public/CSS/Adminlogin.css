@@ -25,6 +25,7 @@ body {
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
+    border-radius: 60px;
 }
 
 h1 {
@@ -45,7 +46,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-.loginbox input[type="emai"],
+.loginbox input[type="email"],
 input[type="password"] {
     border: none;
     border-bottom: 1px solid black;
@@ -58,7 +59,7 @@ input[type="password"] {
     border: none;
     outline: none;
     height: 40px;
-    background: rgb(83, 50, 83);
+    background: purple;
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
