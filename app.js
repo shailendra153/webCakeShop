@@ -11,6 +11,7 @@ const app = express();
 const fileupload = require('express-fileupload');
 
 
+app.use(fileupload());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,18 +20,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(session({
     secret: 'dfkjfrrereprxvncvncvnrorererp'
 }));
-app.use(fileupload());
 
 
-app.use("/admin",adminRouter);
-app.use("/category",categoryRouter);
-app.use("/product",productRouter);
+
+app.use("/admin", adminRouter);
+app.use("/category", categoryRouter);
+app.use("/product", productRouter);
 app.use(homeRouter);
 
 
 
-app.listen(3005);
-
-
-
-
+app.listen(3000);

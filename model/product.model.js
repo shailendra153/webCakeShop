@@ -15,7 +15,7 @@ module.exports = class Product {
                 if (err)
                     reject(err);
                 else {
-                     console.log("not error hai");
+                    console.log(this.productImage);
                     let sql = "insert into product(productName, productPrice, productQuantity, categoryId, productImage, description) values(?,?,?,?,?,?)";
                     databaseConnection.query(sql, [this.productName, this.productPrice * 1, this.productQuantity * 1, this.categoryId * 1, this.productImage, this.description], (err, queryResult) => {
                         databaseConnection.release();
