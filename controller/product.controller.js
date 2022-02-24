@@ -18,7 +18,7 @@ exports.saveProduct = (request, response, next) => {
         const filePath = path.join(__dirname, "../", "public/images", fileName);
         file.mv(filePath, err => {
             if (!err) {
-                if (request.body.productName && request.body.productPrice && request.body.productQty && request.body.categoryId && file && request.body.productDescription) {
+                if (request.body.productName && request.body.productPrice && request.body.productQty && request.body.categoryId && fileName && request.body.productDescription) {
                     let product = new Product(request.body.productName, request.body.productPrice, request.body.productQty, request.body.categoryId, fileName, request.body.productDescription);
                     product.save().then(result => {
                         response.redirect("/admin/dashboard");
