@@ -50,9 +50,8 @@ exports.viewProductPage = (request, response, next) => {
     Product.productList()
         .then(results => {
             console.log(results);
-            return response.render("/admin/view_product.ejs", {
-                title: "View Products",
-                products: results
+            response.render("admin/view_product", {
+                title: "Login"
             });
 
         })

@@ -28,9 +28,8 @@ exports.viewCategoryList = (request, response, next) => {
     Category.categoryList()
         .then(results => {
             console.log(results);
-            return response.render("/admin/view_category.ejs", {
-                title: "View Category",
-                categories: results
+            response.render("admin/view_category", {
+                title: "Login"
             });
 
         })
