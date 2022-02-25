@@ -20,9 +20,7 @@
 <body>
 
     <nav>
-        <!-- <label><a href=""><img
-                    src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgcL6jUiu1spLJziQMR3i4FI2bW3YSVkGhyA&usqp=CAU"
-                    alt=""></a></label>-->
+
         <label>CakeOnDoor</label>
         <ul>
             <li><button href="/" class="btn btn-primary">Logout</button></li>
@@ -32,40 +30,51 @@
         <center> <img src=https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500>
             <br><br>
             <h2>Admin</h2>
-        </center> <br> <a href="/product/add-product"><i class="fa fa-user"></i><span>AddProduct</span></a>
-        <a href="#"><i class="fa fa-envelope"></i><span>Message</span></a>
-        <button type="button" class="btn btn-primary fa fa-sellsy" data-toggle="modal" data-target="#exampleModalCenter">
-            Add category
-          </button>
-        <a href="#"><i class="fa fa-sellsy"></i><span>Statistices</span></a>
-        <a href="#"><i class="fa fa-ban"></i><span>Ban Customers</span></a>
-        <a href="#"><i class="fa fa-cog"></i><span>Setting</span></a>
+        </center> <br>
+        <a href="/product/add-product"><i class="fa fa-user"></i><span>Add Product</span></a>
+        <a href="/product/add-product"><i class="fa fa-user"></i><span>View Product</span></a>
+        <a class="fa fa-user" data-toggle="modal" data-target="#myModal" href="#">ADD CATEGORY</a>
+        <a href="#"><i class="fa fa-envelope"></i><span>View Ctegory </span></a>
+        <a href="#"><i class="fa fa-sellsy"></i><span>Order List</span></a>
+        <a href="#"><i class="fa fa-ban"></i><span>Customer List</span></a>
+    </div>
+
+    <div class="data">
 
     </div>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Category</h4>
+                    <button type="text" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
                 <div class="modal-body">
                     <form action="/category/add" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label class="text">Category Name</label>
+                            <label>Category Name</label>
                             <input type="text" name="categoryName" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label class="text">Category Image</label>
+                            <label>Category Image</label>
                             <input type="file" name="categoryImage" />
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             <button class="btn btn-primary" type="submit">Add</button>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-
+    </div>
 </body>
 
 </html>
