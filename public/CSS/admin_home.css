@@ -12,7 +12,7 @@ body {
 }
 
 .data {
-    background: url(https://images.pexels.com/photos/1036621/pexels-photo-1036621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background: url("https://images.pexels.com/photos/1036621/pexels-photo-1036621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     height: 100vh;
     margin-left: 250px;
     background-size: cover;
@@ -171,6 +171,7 @@ nav .menu-bar {
 #menu:checked~.side-menu {
     left: 0;
 }
-.text{
-  text-decoration: #4c516d;    
+
+.text {
+    text-decoration: #4c516d;
 }

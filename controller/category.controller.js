@@ -1,5 +1,6 @@
 const Category = require('../model/category.model');
 const path = require('path');
+const { request, response } = require('express');
 exports.addCategory = (request, response, next) => {
 
 
@@ -23,3 +24,18 @@ exports.addCategory = (request, response, next) => {
         });
     }
 };
+exports.viewCategoryList = (request, response, next) => {
+    Category.categoryList()
+        .then(results => {
+            console.log(results);
+            return response.render("/admin/view_category.ejs", {
+                title: "View Category",
+                categories: results
+            });
+
+        })
+        .catch(err => {
+            console.log(err);
+            return response.send("Erro.....");
+        });
+}

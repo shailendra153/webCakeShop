@@ -46,3 +46,18 @@ exports.addProductPage = (request, response, next) => {
             return response.send("Erro.....");
         });
 };
+exports.viewProductPage = (request, response, next) => {
+    Product.productList()
+        .then(results => {
+            console.log(results);
+            return response.render("/admin/view_product.ejs", {
+                title: "View Products",
+                products: results
+            });
+
+        })
+        .catch(err => {
+            console.log(err);
+            return response.send("Erro.....");
+        });
+}

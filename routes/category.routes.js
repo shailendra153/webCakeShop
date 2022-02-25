@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 router.post("/add", auth.isAuth, categoryController.addCategory);
+router.get("/view-category", auth.isAuth, categoryController.viewCategoryList);
 
 
 module.exports = router;
