@@ -1,6 +1,6 @@
 const Favorite = require('../model/favorite.model');
 
-exports.addInCart = (request, response) => {
+exports.addInFavorite = (request, response) => {
     let favorite = new Favorite();
     favorite.productId = request.params.pid;
     favorite.customerId = request.session.cureentCustomer;
@@ -21,7 +21,7 @@ exports.addInCart = (request, response) => {
     );
 
 }
-exports.removeFromCart = (request, response) => {
+exports.removeFromFavorite = (request, response) => {
     let favorite = new Favorite();
     favorite.productId = request.params.pid;
     favorite.customerId = request.session.cureentCustomer;

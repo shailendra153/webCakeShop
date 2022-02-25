@@ -6,7 +6,8 @@ const adminRouter = require("./routes/adminRoutes");
 const homeRouter = require("./routes/homeRoutes");
 const categoryRouter = require('./routes/category.routes');
 const productRouter = require('./routes/product.routes');
-
+const cartRouter = require('./routes/cart.route');
+const favoriteRouter = require('./routes/favorite.route');
 const app = express();
 const fileupload = require('express-fileupload');
 
@@ -22,7 +23,8 @@ app.use(session({
 }));
 
 
-
+app.use("/cart", cartRouter);
+app.use("/favorite", favoriteRouter);
 app.use("/admin", adminRouter);
 app.use("/category", categoryRouter);
 app.use("/product", productRouter);

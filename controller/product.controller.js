@@ -7,14 +7,14 @@ exports.saveProduct = (request, response, next) => {
     console.log(request.body.productQty)
     console.log(request.body.productDescription)
     console.log(request.body.categoryId)
-    console.log(request.files.productImages.name);
+
 
 
     const file = request.files.productImages;
     const fileName = new Date().getTime() + file.name;
     console.log(file.name);
 
-    if (file) {
+    if (file.name) {
         const filePath = path.join(__dirname, "../", "public/images", fileName);
         file.mv(filePath, err => {
             if (!err) {
