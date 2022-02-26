@@ -5,6 +5,7 @@ exports.homePage = (request, response, next) => {
         .then(results => {
             console.log(results);
             return response.render("homePage.ejs", {
+                title: "Home",
                 categoryList: results[0],
                 productList: results[1]
             });
