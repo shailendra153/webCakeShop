@@ -51,7 +51,8 @@ exports.viewProductPage = (request, response, next) => {
         .then(results => {
             console.log(results);
             response.render("admin/view_product", {
-                title: "Login"
+                title: "Login",
+                productList: results
             });
 
         })

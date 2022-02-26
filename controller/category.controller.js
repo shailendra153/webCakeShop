@@ -25,7 +25,7 @@ exports.addCategory = (request, response, next) => {
     }
 };
 exports.viewCategoryList = (request, response, next) => {
-    Category.categoryList()
+    ` Category.categoryList()
         .then(results => {
             console.log(results);
             response.render("admin/view_category", {
@@ -36,5 +36,5 @@ exports.viewCategoryList = (request, response, next) => {
         .catch(err => {
             console.log(err);
             return response.send("Erro.....");
-        });
+        });`
 }

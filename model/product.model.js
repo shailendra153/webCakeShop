@@ -85,19 +85,20 @@ module.exports = class Product {
     }
     static productList() {
         return new Promise((resolve, reject) => {
-            pool.getConnection((err, databaseConnection) => {
-                if (err)
-                    reject(err);
-                else {
+            pool.getConnection((err, con) => {
+                if (!err) {
 
-                    let sql = "select * from product ";
-                    databaseConnection.query(sql, (err, queryResult) => {
-                        databaseConnection.release();
-                        err ? reject(err) : resolve(queryResult);
+
+                    let sql = "select * from product";
+
+
+                    con.query(sql, (err, queryResults) => {
+                        con.release();
+                        err ? reject(err) : resolve(queryResults);
                     });
-
-                }
-            });
+                } else
+                    reject(err);
+            })
         });
 
     }
