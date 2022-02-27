@@ -3,7 +3,7 @@ const category = require("../model/category.model");
 const User = require('../model/user.model');
 
 exports.homePage = (request, response, next) => {
-    let currentCustomerId = request.session.current_user_id;
+    let currentCustomerId = request.session.current_customer_id;
     Promise.all([category.fetchAllCategory(), product.fetchAllProduct(currentCustomerId)])
         .then(results => {
             console.log(results);

@@ -16,7 +16,7 @@ exports.signup = (request, response, next) => {
         .then(result => {
             User.getCurrentUser(user.cusEmail)
                 .then(results => {
-                    request.session.current_user_id = results[0].id;
+                    request.session.current_customer_id = results[0].id;
                     response.redirect("/");
                 })
                 .catch();

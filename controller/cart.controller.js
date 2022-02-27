@@ -36,4 +36,3 @@ exports.removeFromCart = (request, response, next) => {
             });
 
 }
-

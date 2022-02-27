@@ -28,7 +28,7 @@ exports.addCategory = (request, response, next) => {
     }
 };
 exports.viewCategoryList = (request, response, next) => {
-    Category.categoryList()
+    Category.fetchAllCategory()
         .then(results => {
             console.log(results);
             response.render("admin/view_category", {
