@@ -40,7 +40,7 @@ module.exports = class Cart {
         });
     }
     removeFromCart() {
-        return new promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             pool.getConnection((err, con) => {
                 if (err)
                     reject(err);

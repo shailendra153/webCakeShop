@@ -10,7 +10,7 @@ exports.saveProduct = (request, response, next) => {
 
 
 
-    const file = request.files.productImages;
+    const file = request.files.productImage;
     const fileName = new Date().getTime() + file.name;
     console.log(file.name);
 
