@@ -81,7 +81,8 @@
         <div class="col-md-10">
             <div class=" container ">
                 <div class="row mt-4">
-                    <% for(product of productList){%>
+                    <% for(product of productList)
+                    {%>
             <div class=" box col-md-4 ">
                 <div class="card">
                     <div class="">
@@ -92,13 +93,12 @@
                             <span><%=product.productName%></span><span><%=product.productPrice%></span></h2>
                         <p class="card-text text-center"><i><%=product.description%><i></p>
                         <div class="">
-                            <%if(product.productid){%>
-                            <a href="/cart/remove-from-cart/:<%=product.id%>"> <button class="btn btn-primary">Remove
-                                    From
-                                    Cart</button></a>
+                            <%if(product.productId){%>
+                            <button onclick="addToCart(this,'<%=isLoggedIn%>','<%=product.id%>')"
+                                class="btn btn-primary">Remove From Cart</button>
                             <%}else{%>
-                            <a href="/cart/add-to-cart/:<%=product.id%>"> <button class="btn btn-primary">Add to
-                                    Cart</button></a>
+                            <button onclick="addToCart(this,'<%=isLoggedIn%>','<%=product.id%>')"
+                                class="btn btn-primary">Add To Cart</button>
                             <%}%>
                             <button>Add to Fav</button>
                         </div>

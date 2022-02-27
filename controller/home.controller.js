@@ -3,15 +3,15 @@ const category = require("../model/category.model");
 const User = require('../model/user.model');
 
 exports.homePage = (request, response, next) => {
-    let currentUserId = request.session.current_user_id;
-    Promise.all([category.fetchAllCategory(), product.fetchAllProduct(currentUserId)])
+    let currentCustomerId = request.session.current_user_id;
+    Promise.all([category.fetchAllCategory(), product.fetchAllProduct(currentCustomerId)])
         .then(results => {
             console.log(results);
             return response.render("homePage.ejs", {
                 title: "Home",
                 categoryList: results[0],
                 productList: results[1],
-                isLoggedIn: request.session.current_user_id
+                isLoggedIn: request.session.current_customer_id
 
             });
         })
@@ -28,7 +28,7 @@ exports.login = (request, response, next) => {
     user.checkUser().
     then(result => {
             if (result.length != 0) {
-                request.session.current_user_id = result[0].id;
+                request.session.current_customer_id = result[0].id;
                 return response.redirect("/");
             }
         })
@@ -38,7 +38,7 @@ exports.login = (request, response, next) => {
         });
 }
 exports.signout = (request, response, next) => {
-    request.session.current_user_id = null;
+    request.session.current_customer_id = null;
     request.session.destroy();
     response.redirect("/");
 }

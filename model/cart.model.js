@@ -10,6 +10,7 @@ module.exports = class Cart {
                 if (!err) {
                     console.log("my sql tak pahoch rahi he....");
                     let sql = "select product.id,product.productName,product.productPrice,product.productQuantity,product.description,product.productImage,cart.id as cartId from product inner join cart on product.id = cart.productId where cart.customerId = ?";
+                    console.log("after fetchcart query");
                     con.query(sql, [customerId * 1], (err, queryResults) => {
                         con.release();
                         err ? reject(err) : resolve(queryResults);
@@ -23,7 +24,7 @@ module.exports = class Cart {
 
     addItemInCart() {
         console.log("in ssql");
-        return new promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             pool.getConnection((err, con) => {
                 if (err)
                     reject(err);
