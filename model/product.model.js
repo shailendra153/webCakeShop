@@ -83,15 +83,15 @@ module.exports = class Product {
         });
 
     }
-    static productList() {
+    static fetchAllProduct(currentCustomerId) {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, con) => {
                 if (!err) {
-
-
-                    let sql = "select * from product";
-
-
+                    let sql = "";
+                    if (currentCustomerId) {
+                        sql = "select product.id,product.productName,product.productPrice,product.productQuantity,product.description,product.productImage,cart.productId from product left outer join cart on product.id=cart.productId and cart.customerId=" + currentCustomerId;
+                    } else
+                        sql = "select * from product";
                     con.query(sql, (err, queryResults) => {
                         con.release();
                         err ? reject(err) : resolve(queryResults);

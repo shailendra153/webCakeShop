@@ -1,6 +1,12 @@
-const { reject } = require('async');
-const { promiseImpl } = require('ejs');
-const { resolve } = require('path/posix');
+const {
+    reject
+} = require('async');
+const {
+    promiseImpl
+} = require('ejs');
+const {
+    resolve
+} = require('path/posix');
 const pool = require('../database/dbconfig');
 module.exports = class Customer {
     constructor(customerName, customerEmail, customerMobile, customerPassword, customerAddress, customerGender, customerRegisterDate) {

@@ -32,7 +32,7 @@ exports.saveProduct = (request, response, next) => {
     }
 };
 exports.addProductPage = (request, response, next) => {
-    Category.categoryList()
+    Category.fetchAllCategory()
         .then(results => {
             console.log(results);
             return response.render("admin/add_product.ejs", {
@@ -47,7 +47,7 @@ exports.addProductPage = (request, response, next) => {
         });
 };
 exports.viewProductPage = (request, response, next) => {
-    Product.productList()
+    Product.fetchAllProduct()
         .then(results => {
             console.log(results);
             response.render("admin/view_product", {
