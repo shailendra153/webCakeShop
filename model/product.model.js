@@ -1,3 +1,4 @@
+const { request } = require("express");
 const PoolNamespace = require("mysql/lib/PoolNamespace");
 const pool = require("../database/dbconfig");
 module.exports = class Product {
@@ -26,56 +27,33 @@ module.exports = class Product {
             });
         });
     }
-    delete(id) {
-        this.id = id;
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, databaseConnection) => {
-                if (err)
-                    reject(err);
-                else {
-
-                    let sql = "delete from product where id=?";
-                    databaseConnection.query(sql, [this.id * 1], (err, queryResult) => {
-                        databaseConnection.release();
-                        err ? reject(err) : resolve(queryResult);
-                    });
-
-                }
-            });
+    static delete(id){
+        return new Promise((resolve,reject)=>{
+          pool.getConnection((err,con)=>{
+            if(!err){
+                let sql = "delete from product where id =?";
+                con.query(sql,[parseInt(id)],(err,result)=>{
+                  err ? reject(err) : resolve(result);
+                  con.release();
+                });
+            }
+            else
+              reject(err);
+          });
         });
-    }
-    static update(id) {
-        this.id = id;
-
+      }
+ update(id) {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, databaseConnection) => {
                 if (err)
                     reject(err);
                 else {
-
-                    let sql = "update product set productName=?,productPrice=?,productQuantity=?,categoryId=?,productImage=?,description=? where id=?";
-                    databaseConnection.query(sql, [this.productName, this.productPrice * 1, this.productQuantity * 1, this.categoryId * 1, this.productImage, this.description, this.id * 1], (err, queryResult) => {
+                    console.log(request.body);
+                    let sql = "update product set productName=?,productPrice=?,productQuantity=?,productImage=?,description=? where id=?";
+                    databaseConnection.query(sql, [this.productName, this.productPrice * 1, this.productQuantity * 1, this.productImage, this.description, this.id * 1], (err, queryResult) => {
                         databaseConnection.release();
                         err ? reject(err) : resolve(queryResult);
-                    });
-
-                }
-            });
-        });
-
-    }
-    static productById(id) {
-        this.id = id;
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, databaseConnection) => {
-                if (err)
-                    reject(err);
-                else {
-
-                    let sql = "select * from product where id=?";
-                    databaseConnection.query(sql, [this.id * 1], (err, queryResult) => {
-                        databaseConnection.release();
-                        err ? reject(err) : resolve(queryResult);
+                      
                     });
 
                 }
@@ -83,6 +61,21 @@ module.exports = class Product {
         });
 
     }
+    static fetchProductById(id){
+        return new Promise((resolve,reject)=>{
+          pool.getConnection((err,con)=>{
+            if(!err){
+               let sql = "select * from product where id =?";
+               con.query(sql,[id*1],(err,result)=>{
+                 err ? reject(err) : resolve(result);
+                 con.release();
+               });
+            }
+            else
+              reject(err);
+          });
+        });
+     }
     static productList() {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, databaseConnection) => {

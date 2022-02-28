@@ -1,18 +1,71 @@
+
 <html>
+  <style>
+    table, th, td {
+      border: 1px solid;
+      border-color: pink;
+    }
+    </style>
+  <body>
 
-<head>
-    <title> Admin Login Form </title>
-    <%-include('../partial/_bootstrap.ejs')%>
-        <link rel="stylesheet" href="/CSS/Adminlogin.css" />
-
-</head>
-
-<body>
-    <div class="loginbox">
-        <h1>hrloo i am in View Page IN profuct</h1>
-
-    </div>
-</body>
-
+      <div class="container mt-5">
+          <div class="row">
+              <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>S.no</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <%
+                        let sno = 1;
+                        for(product of productList)
+                        {
+                       %>
+                         <tr id="row<%=product.id%>">
+                             <td><%=sno++%></td>
+                             <td>
+                                 <img src="/images/<%=product.productImage%>" width="100px" heigth="100px"/>
+                             </td>
+                             <td><%=product.productName%></td>
+                             <td><%=product.productQuantity%></td>
+                             <td><%=product.productPrice%></td>
+                             <td><%=product.description%></td>
+                             <td>
+                                <a href="/product/productEdit/<%=product.id%>"> 
+                                 <button class="btn btn-primary">Edit</button>
+                               </a> 
+                             </td>
+                             <td>
+                              <a href ="/product/delete-product/<%=product.id%>"> <button  onclick="deleteProduct('<%=product.id%>')" id="delete-button" class="btn btn-danger">Delete</button>
+                            
+                              </a>  </td>
+                         </tr> 
+                       <%}%>    
+                    </tbody>
+                    <script>
+                      function deleteProduct(productId){
+                        if(confirm('Are you sure ?')){  
+                            $.ajax({
+                                url: '/product/delete-product/'+productId,
+                                success: function(result){
+                                $('#row'+productId).remove();
+                                }
+                            });
+                        }
+                      }
+                  </script>
+                </table>
+              </div>
+          </div>
+      </div>
+  </body>
 </html>
-</body>

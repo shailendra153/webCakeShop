@@ -1,6 +1,7 @@
 const Category = require('../model/category.model');
 const path = require('path');
 const { request, response } = require('express');
+const { id } = require('../model/category.model');
 exports.addCategory = (request, response, next) => {
 
 
@@ -29,7 +30,8 @@ exports.viewCategoryList = (request, response, next) => {
         .then(results => {
             console.log(results);
             response.render("admin/view_category", {
-                title: "Login"
+                title: "Login",
+                categoryList: results
             });
 
         })
@@ -38,3 +40,44 @@ exports.viewCategoryList = (request, response, next) => {
             return response.send("Erro.....");
         });
 }
+exports.getCategoryById = (request,response,next)=>{
+    Category.fetchCategoryById(request.params.id)
+    .then(result=>{
+      if(result.length>0){
+         response.render('admin/categoryEdit.ejs',{
+            username : '',
+            product: result[0]
+         });
+      }
+    })
+    .catch(err=>{
+       console.log(err);
+    });
+ };
+exports.updateCategory =  (request,response)=>{
+    let category = new Category();
+    console.log(request.body.categoryId)
+    category.categoryId = request.params.categoryId;
+    category.categoryName = request.body.categoryName;
+    category.categoryImage = request.body.categoryImage;
+    
+    category.update().then(result=>{
+       response.redirect("/category/view-category");
+    }).catch(err=>{
+       console.log(err);
+       response.send("Error.....");
+    });
+ };
+
+
+ exports.deletecategory = (request,response,next)=>{
+    const id = request.params.id;
+    Category.delete(id).then(
+        ()=>{
+            //response.redirect("/user/product-list");
+            response.redirect("/category/view-category");
+        }
+    ).catch();
+ };
+
+
