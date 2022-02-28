@@ -1,7 +1,8 @@
 const Category = require('../model/category.model');
 const path = require('path');
-const { request, response } = require('express');
-const { id } = require('../model/category.model');
+
+
+
 exports.addCategory = (request, response, next) => {
 
 
@@ -26,7 +27,7 @@ exports.addCategory = (request, response, next) => {
     }
 };
 exports.viewCategoryList = (request, response, next) => {
-    Category.categoryList()
+    Category.fetchAllCategory()
         .then(results => {
             console.log(results);
             response.render("admin/view_category", {

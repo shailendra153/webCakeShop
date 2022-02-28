@@ -1,30 +1,25 @@
 const Cart = require('../model/cart.model');
 
-exports.addInCart = (request, response) => {
+exports.addToCart = (request, response, next) => {
     let cart = new Cart();
     cart.productId = request.params.pid;
-    cart.customerId = request.session.cureentCustomer;
-    cart.addInCart()
+    cart.customerId = request.session.current_customer_id;
+    cart.addItemInCart()
         .then(result => {
             return response.json({
                 message: "success"
             });
         })
-
-    .catch(
-        err => {
-            return response.jsaon({
+        .catch(err => {
+            return response.json({
                 message: "error"
-            });
-
-        }
-    );
-
+            })
+        });
 }
-exports.removeFromCart = (request, response) => {
+exports.removeFromCart = (request, response, next) => {
     let cart = new Cart();
     cart.productId = request.params.pid;
-    cart.customerId = request.session.cureentCustomer;
+    cart.customerId = request.session.current_customer_id;
     cart.removeFromCart()
         .then(result => {
             return response.json({
@@ -32,13 +27,12 @@ exports.removeFromCart = (request, response) => {
             });
         })
 
-    .catch(
-        err => {
-            return response.jsaon({
-                message: "error"
-            });
+        .catch(
+            err => {
+                return response.json({
+                    message: "error"
+                })
 
-        }
-    );
+            });
 
 }

@@ -89,7 +89,7 @@
           });
 
       }
-      static categoryList() {
+      static fetchAllCategory() {
           return new Promise((resolve, reject) => {
               pool.getConnection((err, databaseConnection) => {
                   if (err)

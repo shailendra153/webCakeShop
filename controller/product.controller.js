@@ -4,13 +4,13 @@ const Product = require("../model/product.model");
 exports.saveProduct = (request, response, next) => {
     console.log(request.body.productName)
     console.log(request.body.productPrice)
-    console.log(request.body.productQty)
-    console.log(request.body.productDescription)
+    console.log(request.body.productQuantity)
+    console.log(request.body.description)
     console.log(request.body.categoryId)
 
 
 
-    const file = request.files.productImages;
+    const file = request.files.productImage;
     const fileName = new Date().getTime() + file.name;
     console.log(file.name);
 
@@ -32,7 +32,7 @@ exports.saveProduct = (request, response, next) => {
     }
 };
 exports.addProductPage = (request, response, next) => {
-    Category.categoryList()
+    Category.fetchAllCategory()
         .then(results => {
             console.log(results);
             return response.render("admin/add_product.ejs", {
@@ -47,7 +47,7 @@ exports.addProductPage = (request, response, next) => {
         });
 };
 exports.viewProductPage = (request, response, next) => {
-    Product.productList()
+    Product.fetchAllProduct()
         .then(results => {
             console.log(results);
             response.render("admin/view_product", {

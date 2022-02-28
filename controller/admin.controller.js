@@ -1,4 +1,6 @@
-const { request } = require('express');
+const {
+    request
+} = require('express');
 const Admin = require('../model/admin.model');
 exports.adminLoginPage = (request, response, next) => {
     response.render("admin/admin_login.ejs", {
