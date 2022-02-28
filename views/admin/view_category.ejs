@@ -1,3 +1,4 @@
+
 <html>
 
 <head>
@@ -9,12 +10,69 @@
 
 </head>
 
-<body>
-    <div class="loginbox">
-        <h1>hrloo i am in view page</h1>
 
-    </div>
-</body>
-
-</html>
-</body>
+<html>
+    <style>
+      table, th, td {
+        border: 1px solid;
+      }
+      </style>
+    <body>
+  
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>S.no</th>
+                              <th>Image</th>
+                              <th>Name</th>
+                               <th>Edit</th>
+                              <th>Delete</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                         <%
+                          let sno = 1;
+                          for(category of categoryList)
+                          {
+                         %>
+                           <tr id="row<%=category.categoryId%>">
+                               <td><%=sno++%></td>
+                               <td>
+                                   <img src="/images/<%=category.categoryImage%>" width="100px" heigth="100px"/>
+                               </td>
+                               <td><%=category.categoryName%></td>
+                              
+                      
+                               <td>
+                                  <a href="/category/categoryEdit/<%=category.categoryId%>"> 
+                                   <button class="btn btn-primary">Edit</button>
+                                 </a> 
+                               </td>
+                               <td>
+                                <a href ="/category/delete-category/<%=category.categoryId%>"> <button  onclick="category('<%=category.categoryId%>')" id="delete-button" class="btn btn-danger">Delete</button>
+                              
+                                </a>  </td>
+                           </tr> 
+                         <%}%>    
+                      </tbody>
+                      <script>
+                          function deleteProduct(categoryId){
+                            if(confirm('Are you sure ?')){  
+                                $.ajax({
+                                    url: '/category/delete-category/'+categoryId,
+                                    success: function(result){
+                                    $('#row'+productId).remove();
+                                    }
+                                });
+                            }
+                          }
+                      </script>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </body>
+  </html>
