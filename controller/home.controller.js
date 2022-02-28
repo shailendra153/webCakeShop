@@ -4,7 +4,7 @@ const User = require('../model/user.model');
 
 exports.homePage = (request, response, next) => {
     let currentCustomerId = request.session.current_customer_id;
-    Promise.all([category.fetchAllCategory(), product.fetchAllProduct(currentCustomerId)])
+    Promise.all([category.fetchAllCategory(), product.productList(currentCustomerId)])
         .then(results => {
             console.log(results);
             return response.render("homePage.ejs", {

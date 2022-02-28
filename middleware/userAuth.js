@@ -1,5 +1,5 @@
 exports.isAuth = (request, response, next) => {
-    if (request.session.current_customer_id)
+    if (request.session.currentCustomer)
         next();
     else
         response.redirect("/login");

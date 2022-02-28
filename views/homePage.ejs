@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
-    <title><%=title%></title>
+    <title>
+        <%=title%>
+    </title>
     <%-include('partial/_bootstrap.ejs')%>
 
-    <link rel="stylesheet" href="/CSS/home.css">
-    <!-- <style>
+        <link rel="stylesheet" href="/CSS/home.css">
+        <!-- <style>
         :root {
             --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !;
         }
@@ -43,6 +45,11 @@
             text-decoration: underline;
         }
     </style> -->
+        <style>
+            .container {
+                background-color: rgb(209, 114, 114);
+            }
+        </style>
 </head>
 
 <body>
@@ -61,17 +68,17 @@
             <a class="nav-link" href="/cart/view-cart">Cart</a>
             <% if(isLoggedIn){%>
 
-            <a class="nav-link" href="/signout">SignOut</a>
+                <a class="nav-link" href="/signout">SignOut</a>
 
-            <%}else{%>
+                <%}else{%>
 
-            <a class="nav-link" href="/login">SignIn</a>
+                    <a class="nav-link" href="/login">SignIn</a>
 
 
-            <a class="nav-link" href="/signup">SignUp</a>
+                    <a class="nav-link" href="/signup">SignUp</a>
 
-            <%}%>  
-            <!-- <a class="nav-link" href="/login">SignIn</a>
+                    <%}%>
+                        <!-- <a class="nav-link" href="/login">SignIn</a>
 
             <a class="nav-link" href="/signup">SignUp</a> -->
 
@@ -88,8 +95,7 @@
     <section class="home" id="home">
         <div class="homeContent ">
             <h2>Delicious Cake for Everyone </h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum excepturi doloribus, fuga quod deserunt
-                recusandae?
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum excepturi doloribus, fuga quod deserunt recusandae?
             </p>
             <div class="home-btn">
                 <a href="/login"><button>Login</button></a>
@@ -102,42 +108,70 @@
         <div class="heading">
             <h2>Our Exclusive Products</h2>
         </div>
-        <div class="swiper product-row">
-            <% for(product of productList){%>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide box">
-                    <div class="img">
-                        <img src="/images/<%=product.productImage%>" alt="">
-                    </div>
-                    <div class="product-content">
-                        <h3> <span><%=product.productName%></span><span><%=product.productPrice%></span></h3>
-                        <p><%=product.description%> </p>
-                        <div class="orderNow">
-                            <%if(product.productId){%>
-                            <a href="#" onclick="addToCart(this,'<%=isLoggedIn%>','<%=product.id%>')"
-                                class="btn mr-2">Remove From Cart</a>
-                            <%}else{%>
-                            <a href="#" onclick="addToCart(this,'<%=isLoggedIn%>','<%=product.id%>')"
-                                class="btn mr-2 ">Add To Cart</a>
-                            <%}%>
-                                    <button>Add to Fav</button> 
+        <% for(product of productList){%>
+            <div class="swiper product-row">
+
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide box">
+                        <div class="img">
+                            <img src="/images/<%=product.productImage%>" alt="">
+                        </div>
+                        <div class="product-content">
+                            <h3> <span><%=product.productName%></span><span><%=product.productPrice%></span></h3>
+                            <p>
+                                <%=product.description%>
+                            </p>
+                            <div class="orderNow">
+                                <%if(product.productId){%>
+                                    <a href="#" onclick="addToCart(this,'<%=isLoggedIn%>','<%=product.id%>')" class="btn mr-2">Remove From Cart</a>
+                                    <%}else{%>
+                                        <a href="#" onclick="addToCart(this,'<%=isLoggedIn%>','<%=product.id%>')" class="btn mr-2 ">Add To Cart</a>
+                                        <%}%>
+                                            <button>Add to Fav</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- <div class="swiper-pagination"></div> -->
             </div>
             <%} %>
-                            <!-- <div class="swiper-pagination"></div> -->
-                        </div>
+
+    </section>
+    <script>
+        function addToCart(button, isLoggedIn, pid) {
+            if (isLoggedIn) {
+                var buttonText = button.innerText;
+                if (buttonText == "Add To Cart") {
+                    $.ajax({
+
+                        url: "/cart/add-to-cart/" + pid,
+                        success: function(result) {
+                            alert("Item Added In Cart");
+                            button.innerText = "Remove From Cart";
+                        }
+                    });
+
+                } else if (buttonText == "Remove From Cart") {
+                    $.ajax({
+                        url: "/cart/remove-from-cart/" + pid,
+                        success: function(result) {
+                            alert("Item Removed From Cart..");
+                            button.innerText = "Add To Cart";
+                        }
+                    });
+                }
+            } else
+                window.location.href = "/login";
+        }
+    </script>
+
+    <!-- product section end here  -->
+    <!-- product section start here  -->
+    <!-- <section class="product" id="product"> -->
 
 
-                        </section>
-
-                        <!-- product section end here  -->
-                        <!-- product section start here  -->
-                        <!-- <section class="product" id="product"> -->
-
-
-                        <!-- <div class="container mt-4">
+    <!-- <div class="container mt-4">
             <div class="heading">
                 <h2>Our Exclusive Products</h2>
             </div>
@@ -167,7 +201,7 @@
                 <%} %>
                     </div>
                 </div> -->
-                        <!-- <div class="col-md-10">
+    <!-- <div class="col-md-10">
             <div class=" container ">
                 <div class="row mt-4">
                     <% for(product of productList)
@@ -198,271 +232,205 @@
                     </div>
                 </div>
             </div> -->
-                        <!-- </section>
+    <!-- </section>
 
-                <script>
-                    function addToCart(button, isLoggedIn, pid) {
-                        if (isLoggedIn) {
-                            var buttonText = button.innerText;
-                            if (buttonText == "Add To Cart") {
-                                $.ajax({
-
-                                    url: "/cart/add-to-cart/" + pid,
-                                    success: function (result) {
-                                        alert("Item Added In Cart");
-                                        button.innerText = "Remove From Cart";
-                                    }
-                                });
-
-                            } else if (buttonText == "Remove From Cart") {
-                                $.ajax({
-                                    url: "/cart/remove-from-cart/" + pid,
-                                    success: function (result) {
-                                        alert("Item Removed From Cart..");
-                                        button.innerText = "Add To Cart";
-                                    }
-                                });
-                            }
-                        } else
-                            window.location.href = "/login";
-                    }
-                </script>
+               
 
                 <!-- product section end here  -->
 
-                        <!-- blogs section start here  -->
-                        <section class="blogs" id="blogs">
+    <!-- blogs section start here  -->
+    <section class="blogs" id="blogs">
 
-                            <div class=" swiper blogs-row">
-                                <div class="swiper-wrapper">
-                                    <div class=" swiper-slide box">
-                                        <div class="img">
-                                            <img src="/images/blog-img1.png" alt="">
-                                        </div>
-                                        <div class="content">
-                                            <h3>Caramel Bourbon Vanilla Cupcakes </h3>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-                                                dolorum
-                                                voluptatum
-                                                corporis accusamus aperiam fugiat tempora blanditiis labore dolor
-                                                aliquid maxime
-                                                nobis
-                                                laborum sed soluta voluptatibus aspernatur natus, dicta
-                                                quisquam.
-                                            </p>
-                                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam
-                                                reiciendis
-                                                sint
-                                                eaque at.</p>
-                                            <a href="#blogs" class="btn">learn more</a>
-                                        </div>
-                                    </div>
-                                    <div class=" swiper-slide box">
-                                        <div class="img">
-                                            <img src="/images/blog-img2.png" alt="">
-                                        </div>
-                                        <div class="content">
-                                            <h3>Caramel Bourbon Vanilla Cupcakes </h3>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-                                                dolorum
-                                                voluptatum
-                                                corporis accusamus aperiam fugiat tempora blanditiis labore dolor
-                                                aliquid maxime
-                                                nobis
-                                                laborum sed soluta voluptatibus aspernatur natus, dicta
-                                                quisquam.
-                                            </p>
-                                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam
-                                                reiciendis
-                                                sint
-                                                eaque at.</p>
-                                            <a href="#blogs" class="btn">learn more</a>
-                                        </div>
-                                    </div>
-                                    <div class=" swiper-slide box">
-                                        <div class="img">
-                                            <img src="/images/blog-img2.png" alt="">
-                                        </div>
-                                        <div class="content">
-                                            <h3>Caramel Bourbon Vanilla Cupcakes </h3>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-                                                dolorum
-                                                voluptatum
-                                                corporis accusamus aperiam fugiat tempora blanditiis labore dolor
-                                                aliquid maxime
-                                                nobis
-                                                laborum sed soluta voluptatibus aspernatur natus, dicta
-                                                quisquam.
-                                            </p>
-                                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam
-                                                reiciendis
-                                                sint
-                                                eaque at.</p>
-                                            <a href="#blogs" class="btn">learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-pagination"></div>
+        <div class=" swiper blogs-row">
+            <div class="swiper-wrapper">
+                <div class=" swiper-slide box">
+                    <div class="img">
+                        <img src="/images/blog-img1.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Caramel Bourbon Vanilla Cupcakes </h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis laborum sed soluta voluptatibus aspernatur natus, dicta
+                            quisquam.
+                        </p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint eaque at.</p>
+                        <a href="#blogs" class="btn">learn more</a>
+                    </div>
+                </div>
+                <div class=" swiper-slide box">
+                    <div class="img">
+                        <img src="/images/blog-img2.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Caramel Bourbon Vanilla Cupcakes </h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis laborum sed soluta voluptatibus aspernatur natus, dicta
+                            quisquam.
+                        </p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint eaque at.</p>
+                        <a href="#blogs" class="btn">learn more</a>
+                    </div>
+                </div>
+                <div class=" swiper-slide box">
+                    <div class="img">
+                        <img src="/images/blog-img2.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Caramel Bourbon Vanilla Cupcakes </h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi dolorum voluptatum corporis accusamus aperiam fugiat tempora blanditiis labore dolor aliquid maxime nobis laborum sed soluta voluptatibus aspernatur natus, dicta
+                            quisquam.
+                        </p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab ullam reiciendis sint eaque at.</p>
+                        <a href="#blogs" class="btn">learn more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
 
 
-                            </div>
-                        </section>
+        </div>
+    </section>
 
-                        <!-- blogs section ends here  -->
+    <!-- blogs section ends here  -->
 
-                        <!-- newsletter section start here  -->
+    <!-- newsletter section start here  -->
 
-                        <section class="newsletter">
-                            <form action="">
-                                <h3>subscribe for latest update</h3>
-                                <input type="email" name="" placeholder="enter your email" id="" class="box">
-                                <input type="button" value="subscribe" class="box2">
-                            </form>
-                        </section>
-                        <!-- newsletter section ends here  -->
+    <section class="newsletter">
+        <form action="">
+            <h3>subscribe for latest update</h3>
+            <input type="email" name="" placeholder="enter your email" id="" class="box">
+            <input type="button" value="subscribe" class="box2">
+        </form>
+    </section>
+    <!-- newsletter section ends here  -->
 
-                        <!-- review section start here  -->
-                        <section class="review" id="review">
-                            <div class="heading">
-                                <h2>client review</h2>
-                            </div>
+    <!-- review section start here  -->
+    <section class="review" id="review">
+        <div class="heading">
+            <h2>client review</h2>
+        </div>
 
 
-                            <div class=" swiper review-row">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide box">
-                                        <div class="client-review">
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident,
-                                                perferendis
-                                                architecto
-                                                quasi eveniet aliquam sed?</p>
-                                        </div>
-                                        <div class="client-info">
-                                            <div class="img">
-                                                <img src="/images/client1.jpg" alt="">
-                                            </div>
-                                            <div class="clientDetailed">
-                                                <h3>Hardy Devid</h3>
-                                                <p>UI / UX designer</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide box">
-                                        <div class="client-review">
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident,
-                                                perferendis
-                                                architecto
-                                                quasi eveniet aliquam sed?</p>
-                                        </div>
-                                        <div class="client-info">
-                                            <div class="img">
-                                                <img src="/images/client1.jpg" alt="">
-                                            </div>
-                                            <div class="clientDetailed">
-                                                <h3>Hardy Devid</h3>
-                                                <p>UI / UX designer</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide box">
-                                        <div class="client-review">
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident,
-                                                perferendis
-                                                architecto
-                                                quasi eveniet aliquam sed?</p>
-                                        </div>
-                                        <div class="client-info">
-                                            <div class="img">
-                                                <img src="/images/client1.jpg" alt="">
-                                            </div>
-                                            <div class="clientDetailed">
-                                                <h3>Hardy Devid</h3>
-                                                <p>UI / UX designer</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide box">
-                                        <div class="client-review">
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident,
-                                                perferendis
-                                                architecto
-                                                quasi eveniet aliquam sed?</p>
-                                        </div>
-                                        <div class="client-info">
-                                            <div class="img">
-                                                <img src="/images/client1.jpg" alt="">
-                                            </div>
-                                            <div class="clientDetailed">
-                                                <h3>Hardy Devid</h3>
-                                                <p>UI / UX designer</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-pagination"></div>
+        <div class=" swiper review-row">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="/images/client1.jpg" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="/images/client1.jpg" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="/images/client1.jpg" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <div class="client-review">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto quasi eveniet aliquam sed?</p>
+                    </div>
+                    <div class="client-info">
+                        <div class="img">
+                            <img src="/images/client1.jpg" alt="">
+                        </div>
+                        <div class="clientDetailed">
+                            <h3>Hardy Devid</h3>
+                            <p>UI / UX designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
 
-                                </div>
-                            </div>
-                        </section>
-                        <!-- review section ends here  -->
+            </div>
+        </div>
+    </section>
+    <!-- review section ends here  -->
 
-                        <!-- footer section start here  -->
+    <!-- footer section start here  -->
 
-                        <footer class="footer" id="contact">
-                            <div class="box-container">
-                                <div class="mainBox">
-                                    <div class="content">
-                                        <a href="#"><img src="/images/logo.png" alt=""></a>
-                                        <h1 class="logoName"> Sweet Cake </h1>
-                                    </div>
+    <footer class="footer" id="contact">
+        <div class="box-container">
+            <div class="mainBox">
+                <div class="content">
+                    <a href="#"><img src="/images/logo.png" alt=""></a>
+                    <h1 class="logoName"> Sweet Cake </h1>
+                </div>
 
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta accusamus maxime
-                                        quod.
-                                    </p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta accusamus maxime quod.
+                </p>
 
-                                </div>
-                                <div class="box">
-                                    <h3>Quick link</h3>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>Home</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>product</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>blogs</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>review</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>contact</a>
+            </div>
+            <div class="box">
+                <h3>Quick link</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Home</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>product</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>blogs</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>review</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>contact</a>
 
-                                </div>
-                                <div class="box">
-                                    <h3>Extra link</h3>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>Account info</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>order item</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>privacy policy</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>payment method</a>
-                                    <a href="#"> <i class="fas fa-arrow-right"></i>our services</a>
-                                </div>
-                                <div class="box">
-                                    <h3>Contact Info</h3>
-                                    <a href="#"> <i class="fas fa-phone"></i>+91 12222 34444</a>
-                                    <a href="#"> <i class="fas fa-envelope"></i>Jayshreedesigner@gmail.com</a>
+            </div>
+            <div class="box">
+                <h3>Extra link</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Account info</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>order item</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>privacy policy</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>payment method</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>our services</a>
+            </div>
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="#"> <i class="fas fa-phone"></i>+91 12222 34444</a>
+                <a href="#"> <i class="fas fa-envelope"></i>Jayshreedesigner@gmail.com</a>
 
-                                </div>
+            </div>
 
-                            </div>
-                            <div class="share">
-                                <a href="#" class="fab fa-facebook-f"></a>
-                                <a href="#" class="fab fa-twitter"></a>
-                                <a href="#" class="fab fa-instagram"></a>
-                                <a href="#" class="fab fa-linkedin"></a>
-                                <a href="#" class="fab fa-pinterest"></a>
-                            </div>
-                            <div class="credit">
-                                created by <span>Miss Jayshree Designer</span> |all rights reserved !
-                            </div>
-                        </footer>
-                        <!-- swiper js link  -->
-                        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        </div>
+        <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+        <div class="credit">
+            created by <span>Miss Jayshree Designer</span> |all rights reserved !
+        </div>
+    </footer>
+    <!-- swiper js link  -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-                        <!-- custom js file  -->
-                        <script src="/js/cake.js"></script>
+    <!-- custom js file  -->
+    <script src="/js/cake.js"></script>
 
 
 </body>

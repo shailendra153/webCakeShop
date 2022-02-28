@@ -47,7 +47,7 @@ exports.addProductPage = (request, response, next) => {
         });
 };
 exports.viewProductPage = (request, response, next) => {
-    Product.fetchAllProduct()
+    Product.productList()
         .then(results => {
             console.log(results);
             response.render("admin/view_product", {
@@ -61,21 +61,21 @@ exports.viewProductPage = (request, response, next) => {
             return response.send("Erro.....");
         });
 }
-exports.getProductById = (request,response,next)=>{
+exports.getProductById = (request, response, next) => {
     Product.fetchProductById(request.params.id)
-    .then(result=>{
-      if(result.length>0){
-         response.render('admin/productEdit.ejs',{
-            username : '',
-            product: result[0]
-         });
-      }
-    })
-    .catch(err=>{
-       console.log(err);
-    });
- };
-exports.updateProduct =  (request,response)=>{
+        .then(result => {
+            if (result.length > 0) {
+                response.render('admin/productEdit.ejs', {
+                    username: '',
+                    product: result[0]
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+exports.updateProduct = (request, response) => {
     let product = new Product();
     product.id = request.body.id;
     console.log(request.body);
@@ -85,23 +85,21 @@ exports.updateProduct =  (request,response)=>{
     product.productImage = request.body.productImage;
     product.description = request.body.description;
     console.log(product);
-    product.update().then(result=>{
-       response.redirect("/product/view-product");
-    }).catch(err=>{
-       console.log(err);
-       response.send("Error.....");
+    product.update().then(result => {
+        response.redirect("/product/view-product");
+    }).catch(err => {
+        console.log(err);
+        response.send("Error.....");
     });
- };
+};
 
 
- exports.deleteProduct = (request,response,next)=>{
+exports.deleteProduct = (request, response, next) => {
     const id = request.params.id;
     Product.delete(id).then(
-        ()=>{
+        () => {
             //response.redirect("/user/product-list");
             response.redirect("/product/view-product");
         }
     ).catch();
- };
-
-
+};
